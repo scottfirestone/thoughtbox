@@ -3,7 +3,6 @@ class Api::V1::LinksController < Api::ApiController
 
   def update
     link = Link.find(params[:id])
-    # byebug
     if link.update(link_params)
       respond_with link, location: nil
     end

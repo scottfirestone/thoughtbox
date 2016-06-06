@@ -8,7 +8,7 @@ $('document').ready(function() {
 
 function editThought(){
   let thought_id = $(this).parent().data("thought-id");
-  let thought = $("div[data-thought-id*="+ thought_id + "]")
+  let thought = $("div[data-thought-id*="+ thought_id + "]");
   let thoughtParams = {
     thought: {
       url : $(thought).children('.url').text(),
@@ -20,6 +20,14 @@ function editThought(){
     url: "/api/v1/links/" + thought_id,
     method: "PUT",
     dataType: "json",
-    data: thoughtParams
+    data: thoughtParams,
+    success: function() {
+      alert("Thought updated!")
+      location.reload();
+    },
+    error: function() {
+      alert("URL needs to be in a proper format.");
+      location.reload();
+    }
   })
 }
