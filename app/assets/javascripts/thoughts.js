@@ -3,11 +3,11 @@
 // let editThought = require('editThought');
 
 $('document').ready(function() {
-  $('body').on("blur", ".thought", editThought);
+  $('body').on("click", ".edit", editThought);
 })
 
 function editThought(){
-  let thought_id = $(this).data("thought-id");
+  let thought_id = $(this).parent().data("thought-id");
   let thought = $("div[data-thought-id*="+ thought_id + "]")
   let thoughtParams = {
     thought: {
