@@ -31,4 +31,20 @@ RSpec.feature "User creates new account" do
     expect(current_path).to_not eq(links_path)
     expect(page).to have_content("There was a problem.")
   end
+
+  scenario "registration rejected due to email already used" do
+    User.create(email: "email@example.com", password: "password")
+
+    visit login_path
+    click_on "Register"
+
+    fill_in "Email", with: "email@example.com"
+    fill_in "Password", with: "password"
+    fill_in "Password confirmation", with: "password"
+
+    click_on "Register"
+
+    expect(current_path).to_not eq(links_path)
+    expect(page).to have_content("There was a problem.")
+  end
 end
