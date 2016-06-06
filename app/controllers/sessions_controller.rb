@@ -9,4 +9,10 @@ class SessionsController < ApplicationController
       redirect_to links_path
     end
   end
+
+  def destroy
+    session.clear
+    flash[:success] = "You have been signed off."
+    redirect_to login_path
+  end
 end
