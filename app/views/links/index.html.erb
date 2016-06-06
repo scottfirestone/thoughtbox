@@ -1,5 +1,7 @@
 <%= link_to "Sign Out", logout_path, method: :delete %>
 
+<input class="form-control" type="text" id="filter" placeholder="filter">
+
 <h1>Add a link</h1>
 <%= form_for(@link) do |f| %>
   <h4><%= f.label :url %></h4>

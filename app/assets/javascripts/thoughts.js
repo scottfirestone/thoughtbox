@@ -4,6 +4,7 @@ $('document').ready(function() {
   $('body').on("click", ".edit", editThought);
   $('body').on("click", ".mark-read", changeToRead);
   $('body').on("click", ".mark-unread", changeToUnread);
+  $('#filter').on('keyup', filter);
 })
 
 function editThought(){
@@ -65,3 +66,16 @@ function changeToUnread() {
     }
   });
 }
+
+function filter(){
+  var $thoughts = $('.thought');
+  var filterParam = this.value;
+  $thoughts.each(function (index, thought) {
+    var $thought = $(thought);
+    if ($thought.children('.title').text().indexOf(filterParam) !== -1 || $thought.children('.url').text().indexOf(filterParam) !== -1 ) {
+      $thought.show();
+    } else {
+      $thought.hide();
+    }
+  });
+};
