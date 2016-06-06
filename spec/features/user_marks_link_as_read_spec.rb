@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "User marks link as read" do
+RSpec.feature "User marks link as read", js: true do
   scenario "the link is then marked as read" do
     user = User.create(email: "email@example.com", password: "password")
     link = user.links.create(url: "http://www.google.com", title: "google")
