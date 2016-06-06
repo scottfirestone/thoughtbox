@@ -1,7 +1,5 @@
 "use strict";
 
-// let editThought = require('editThought');
-
 $('document').ready(function() {
   $('body').on("click", ".edit", editThought);
 })
