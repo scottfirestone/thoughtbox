@@ -2,8 +2,8 @@ class Api::V1::LinksController < Api::ApiController
   respond_to :json
 
   def update
-    # byebug
     link = Link.find(params[:id])
+    # byebug
     if link.update(link_params)
       respond_with link, location: nil
     end
@@ -11,6 +11,6 @@ class Api::V1::LinksController < Api::ApiController
 
   private
     def link_params
-      params.require(:link).permit(:url, :title)
+      params.require(:thought).permit(:url, :title)
     end
 end
