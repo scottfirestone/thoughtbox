@@ -2,7 +2,7 @@ class LinksController < ApplicationController
 
   def index
     unless current_user
-      redirect_to new_session_path
+      redirect_to login_path
     end
   end
 
