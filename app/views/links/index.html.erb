@@ -8,8 +8,9 @@
   <h4><%= f.text_field :title %></h4>
   <%= f.submit "Submit", class: "btn btn-primary btn-font-size" %>
 <% end %>
-
-<% @links.each do |link| %>
-  <h4><%= link.title %></h4>
-  <h4><%= link.url %></h4>
+<% if @links %>
+  <% @links.each do |link| %>
+    <h4><%= link.title %></h4>
+    <h4><%= link.url %></h4>
+  <% end %>
 <% end %>

@@ -1,5 +1,4 @@
 class LinksController < ApplicationController
-
   def index
     unless current_user
       redirect_to login_path
@@ -16,6 +15,9 @@ class LinksController < ApplicationController
     if @link.save
       flash[:success] = "New Link Added"
       redirect_to links_path
+    else
+      flash.now[:danger] = "There was a problem with your submission."
+      render :index
     end
   end
 
@@ -23,6 +25,4 @@ class LinksController < ApplicationController
     def link_params
       params.require(:link).permit(:url, :title)
     end
-
-
 end

@@ -7,6 +7,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       redirect_to links_path
+    else
+      flash.now[:danger] = "There was a problem with your credentials."
+      render :new
     end
   end
 
