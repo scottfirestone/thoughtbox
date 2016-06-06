@@ -8,7 +8,7 @@ RSpec.feature "User creates new link" do
 
     visit links_path
 
-    fill_in "Link", with: "www.google.com"
+    fill_in "Url", with: "www.google.com"
     fill_in "Title", with: "Google"
     click_on "Submit"
 
