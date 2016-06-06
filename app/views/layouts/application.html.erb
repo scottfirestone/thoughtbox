@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1"></head>
 <body>
+  <% flash.each do |type, message| %>
+    <%= content_tag :div, sanitize(message), class: "alert alert-#{type}" %>
+  <% end %>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
