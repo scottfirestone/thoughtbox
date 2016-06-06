@@ -6,6 +6,7 @@ $('document').ready(function() {
   $('body').on("click", ".mark-unread", changeToUnread);
   $('#filter-content').on('keyup', filterByContent);
   $('#filter-read').on('change', filterByReadedness);
+  $('#sort').on('click', sortAlphabetically);
 })
 
 function editThought(){
@@ -69,10 +70,10 @@ function changeToUnread() {
 }
 
 function filterByContent(){
-  var $thoughts = $('.thought');
-  var filterParam = this.value;
+  let $thoughts = $('.thought');
+  let filterParam = this.value;
   $thoughts.each(function (index, thought) {
-    var $thought = $(thought);
+    let $thought = $(thought);
     if ($thought.children('.title').text().indexOf(filterParam) !== -1 || $thought.children('.url').text().indexOf(filterParam) !== -1 ) {
       $thought.show();
     } else {
@@ -82,15 +83,15 @@ function filterByContent(){
 };
 
 function filterByReadedness(){
-  var $thoughts = $('.thought');
-  var filterParam = this.value;
+  let $thoughts = $('.thought');
+  let filterParam = this.value;
 
   showFiltered($thoughts, filterParam);
 }
 
 function showFiltered($thoughts, filterParam){
   $thoughts.each(function (index, thought) {
-    var $thought = $(thought);
+    let $thought = $(thought);
     if (filterParam === "all") {
       $thought.show();
     } else if (filterParam === "read") {
@@ -101,4 +102,13 @@ function showFiltered($thoughts, filterParam){
       $thought.children('.unread').parent().show();
     }
   });
+}
+
+function sortAlphabetically() {
+  let $thoughts = $('.thought');
+  let sortedDivs = $thoughts.sort(function(first, second) {
+    return $(first).find('.title').text() < $(second).find('.title').text();
+  });
+  $('#container').empty();
+  $('#container').append(sortedDivs);
 }
