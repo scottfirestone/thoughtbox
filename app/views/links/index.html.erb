@@ -10,7 +10,12 @@
 <% end %>
 <% if @links %>
   <% @links.each do |link| %>
-    <h4><%= link.title %></h4>
-    <h4><%= link.url %></h4>
+    <h4 class="<%= link.read ? 'read' : 'unread' %>"><%= link.title %></h4>
+    <h4 class="<%= link.read ? 'read' : 'unread' %>"><%= link.url %></h4>
+    <% if !link.read %>
+      <%= button_to "Mark as Read", link_path(link), params: { clicked: true }, :method => :put %>
+    <% else %>
+      <%= button_to "Mark as Unread", link_path(link), params: { clicked: true }, :method => :put %>
+    <% end %>
   <% end %>
 <% end %>
