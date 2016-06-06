@@ -1,6 +1,11 @@
 <%= link_to "Sign Out", logout_path, method: :delete %>
 
-<input class="form-control" type="text" id="filter" placeholder="filter">
+<input class="form-control" type="text" id="filter-content" placeholder="filter by content">
+<select id="filter-read" placeholder="Filter by readedness">
+  <option value="all">All</option>
+  <option value="read">Read</option>
+  <option value="unread">Unread</option>
+</select>
 
 <h1>Add a link</h1>
 <%= form_for(@link) do |f| %>

@@ -4,7 +4,8 @@ $('document').ready(function() {
   $('body').on("click", ".edit", editThought);
   $('body').on("click", ".mark-read", changeToRead);
   $('body').on("click", ".mark-unread", changeToUnread);
-  $('#filter').on('keyup', filter);
+  $('#filter-content').on('keyup', filterByContent);
+  $('#filter-read').on('change', filterByReadedness);
 })
 
 function editThought(){
@@ -67,7 +68,7 @@ function changeToUnread() {
   });
 }
 
-function filter(){
+function filterByContent(){
   var $thoughts = $('.thought');
   var filterParam = this.value;
   $thoughts.each(function (index, thought) {
@@ -79,3 +80,25 @@ function filter(){
     }
   });
 };
+
+function filterByReadedness(){
+  var $thoughts = $('.thought');
+  var filterParam = this.value;
+
+  showFiltered($thoughts, filterParam);
+}
+
+function showFiltered($thoughts, filterParam){
+  $thoughts.each(function (index, thought) {
+    var $thought = $(thought);
+    if (filterParam === "all") {
+      $thought.show();
+    } else if (filterParam === "read") {
+      $thought.hide();
+      $thought.children('.read').parent().show();
+    } else if (filterParam === "unread") {
+      $thought.hide();
+      $thought.children('.unread').parent().show();
+    }
+  });
+}
