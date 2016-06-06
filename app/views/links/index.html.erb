@@ -1,6 +1,11 @@
-<%= link_to "Sign Out", logout_path, method: :delete %>
+<div class="pull-right">
+  <%= link_to "Sign Out", logout_path, method: :delete %>
+</div>
 
-<input class="form-control" type="text" id="filter-content" placeholder="filter by content">
+<h1 id="title">Thoughtbox</h1>
+<div class="container">
+  <input class="form-control" type="text" id="filter-content" placeholder="filter by content">
+</div>
 
 <select id="filter-read" placeholder="Filter by readedness">
   <option value="all">All</option>
@@ -9,19 +14,21 @@
 </select>
 
 <button id="sort">Sort Alphabetically</button>
+<div class="container well">
+  <h1>Add a link</h1>
+  <%= form_for(@link) do |f| %>
+    <h4><%= f.label :url %></h4>
+    <h4><%= f.text_field :url %></h4>
+    <h4><%= f.label :title %></h4>
+    <h4><%= f.text_field :title %></h4>
+    <%= f.submit "Submit", class: "btn btn-primary btn-font-size" %>
+  <% end %>
+</div>
 
-<h1>Add a link</h1>
-<%= form_for(@link) do |f| %>
-  <h4><%= f.label :url %></h4>
-  <h4><%= f.text_field :url %></h4>
-  <h4><%= f.label :title %></h4>
-  <h4><%= f.text_field :title %></h4>
-  <%= f.submit "Submit", class: "btn btn-primary btn-font-size" %>
-<% end %>
-<div id="container">
+<div id="container" class="container">
   <% if @links %>
     <% @links.each do |link| %>
-      <div class="thought" data-thought-id="<%= link.id %>">
+      <div class="thought well" data-thought-id="<%= link.id %>">
         <h4 class="<%= link.read ? 'read' : 'unread' %> title" contenteditable="true"><%= link.title %></h4>
         <p class="<%= link.read ? 'read' : 'unread' %> url" contenteditable="true"><%= link.url %></p>
         <% if !link.read %>
