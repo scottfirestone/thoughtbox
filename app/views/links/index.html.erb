@@ -14,9 +14,9 @@
       <h4 class="<%= link.read ? 'read' : 'unread' %> title" contenteditable="true"><%= link.title %></h4>
       <p class="<%= link.read ? 'read' : 'unread' %> url" contenteditable="true"><%= link.url %></p>
       <% if !link.read %>
-        <%= button_to "Mark as Read", link_path(link), params: { clicked: true }, :method => :put %>
+        <button class="mark-read">Mark as Read</button>
       <% else %>
-        <%= button_to "Mark as Unread", link_path(link), params: { clicked: true }, :method => :put %>
+        <button class="mark-unread">Mark as Unread</button>
       <% end %>
       <button class="edit">Edit</button>
     </div>
